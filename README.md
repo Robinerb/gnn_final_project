@@ -8,7 +8,7 @@ This repository contains the code for a comparative study of SMILES and SELFIES 
 ## Repository Structure
 ```text
 .
-├── data/                       # ZINC datasets (subset and cleaned)
+├── data/                       # ZINC dataset
 ├── checkpoints/                # Saved PyTorch model weights (.pth)
 ├── results/                    # Output CSVs (training history, optimization)
 ├── figures/                    # Generated plots and visualizations
@@ -26,18 +26,18 @@ This repository contains the code for a comparative study of SMILES and SELFIES 
 
 ## Quick Start Pipeline
 ### 1. Prepare Data & Train Models:
-python download_data.py && python preprocess.py
-python train.py 
-python train_qed.py
+- python download_data.py && python preprocess.py
+- python train.py 
+- python train_qed.py
 
 ### 2. Evaluate & Analyze Latent Space:
-python run_final_eval.py
-python latent_walk.py
-python optimize_qed.py
+- python run_final_eval.py
+- python latent_walk.py
+- python optimize_qed.py
 
 ### 3. Generate Visualizations:
-python plot_history.py
-python plot_final_result.py
+- python plot_history.py
+- python plot_final_result.py
 
 ## Key Results
 - Robustness: SELFIES achieved 100% chemical validity under random sampling; SMILES failed at 0%.
