@@ -5,6 +5,13 @@
 ## Project Overview
 This repository contains the code for a comparative study of SMILES and SELFIES molecular representations within a multitask sequence-to-sequence Variational Autoencoder (VAE). The project navigates the continuous chemical latent space to optimize the Quantitative Estimate of Drug-likeness (QED), diagnosing optimization pathologies like posterior collapse and reward hacking in limited-data regimes.
 
+## Requirements
+Ensure the following libraries are installed in your environment:
+- `torch`
+- `pandas`
+- `rdkit`
+- `selfies`
+
 ## Repository Structure
 ```text
 .
@@ -25,20 +32,24 @@ This repository contains the code for a comparative study of SMILES and SELFIES 
 ```
 
 ## Quick Start Pipeline
+Execute the scripts in the following order to reproduce the experiments.
+
 ### 1. Prepare Data & Train Models:
-- python download_data.py && python preprocess.py
-- python train.py 
-- python train_qed.py
+- `python download_data.py && python preprocess.py`
+- `python train.py`
+- `python train_qed.py`
 
 ### 2. Evaluate & Analyze Latent Space:
-- python run_final_eval.py
-- python latent_walk.py
-- python optimize_qed.py
+- `python validate.py` (Validates intermediate training states)
+- `python run_final_eval.py` (Computes generative validity metrics)
+- `python latent_walk.py` (Performs linear latent space interpolations)
+- `python diverse_walk.py` (Executes extended latent space exploration)
+- `python optimize_qed.py` (Executes gradient ascent for inverse design)
 
 ### 3. Generate Visualizations:
-- python plot_history.py
-- python plot_final_result.py
+- `python plot_history.py`
+- `python plot_final_result.py`
 
 ## Key Results
-- Robustness: SELFIES achieved 100% chemical validity under random sampling; SMILES failed at 0%.
-- Inverse Design: Gradient ascent successfully maximized the internal QED predictor (~0.98), but RDKit validation showed true scores of ~0.05, exposing extreme reward hacking via infinite alkane chains.
+- **Robustness:** SELFIES achieved 100% chemical validity under random sampling; SMILES failed at 0%.
+- **Inverse Design:** Gradient ascent successfully maximized the internal QED predictor (~0.98), but RDKit validation showed true scores of ~0.05, exposing extreme reward hacking via infinite alkane chains.
